@@ -1,1 +1,4 @@
-
+db:
+  type:disk:size:postgresql:11
+  1024
+  S
