@@ -27,7 +27,7 @@ class Comment
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo_filename = null;
+    private ?string $photoFilename = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
@@ -88,12 +88,12 @@ class Comment
 
     public function getPhotoFilename(): ?string
     {
-        return $this->photo_filename;
+        return $this->photoFilename;
     }
 
-    public function setPhotoFilename(?string $photo_filename): static
+    public function setPhotoFilename(?string $photoFilename): static
     {
-        $this->photo_filename = $photo_filename;
+        $this->photoFilename = $photoFilename;
 
         return $this;
     }
