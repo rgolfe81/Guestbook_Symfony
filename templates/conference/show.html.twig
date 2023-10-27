@@ -5,9 +5,10 @@
 {% block body %}
     <h2>Conferencia: {{ conference }}</h2>
     {% if comments|length > 0 %}
+        <div>Hay {{ comments|length }} comentarios</div>
         {% for comment in comments %}
             {% if comment.photoFilename %}
-                <img src="{{ asset('uploads/photos/' ~ comment.photoFilename) }}" />
+                <img src="{{ asset('uploads/photos/' ~ comment.photoFilename) }}" alt="Imagen de comentario" />
             {% endif %}
             <h4>{{ comment.author }}</h4>
             <small>
@@ -15,6 +16,12 @@
             </small>
             <p>{{ comment.text }}</p>
         {% endfor %}
+        {% if previous >=0 %}
+            <a href="{{ path('conference', { id: conference.id, offset:previous }) }}">Anterior</a>
+        {% endif %}
+        {% if next < comments|length %}
+            <a href="{{ path('conference', { id: conference.id, offset: next }) }}">Siguiente</a>
+        {% endif %}
         {% else %}
         <div>No existen comentarios para esta conferencia.</div>
     {% endif %}
