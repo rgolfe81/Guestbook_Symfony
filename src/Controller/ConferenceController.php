@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Conference;
+use App\Repository\CommentRepository;
 use App\Repository\ConferenceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,17 @@ class ConferenceController extends AbstractController
         return $this->render('conference/index.html.twig',
         [
             'conferences_twig' => $conferences
+        ]);
+    }
+
+    #[Route("/conference/{id}", name: "conference")]
+    public function show(Conference $conference, CommentRepository $commentRepository)
+    {
+        $comments = $commentRepository->findBy(['conference' => $conference], ['createdAt' => 'DESC']);
+
+        return $this->render('conference/show.html.twig', [
+            'comments' => $comments,
+            'conference' => $conference
         ]);
     }
 }

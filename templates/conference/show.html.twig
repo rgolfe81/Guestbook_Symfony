@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Libro de Conferencias - {{ conference }}{% endblock %}
+
+{% block body %}
+    <h2>Conferencia: {{ conference }}</h2>
+    {% if comments|length > 0 %}
+        {% for comment in comments %}
+            {% if comment.photoFilename %}
+                <img src="{{ asset('uploads/photos/' ~ comment.photoFilename) }}" />
+            {% endif %}
+            <h4>{{ comment.author }}</h4>
+            <small>
+                {{ comment.createdAt|format_datetime('medium', 'short') }}
+            </small>
+            <p>{{ comment.text }}</p>
+        {% endfor %}
+        {% else %}
+        <div>No existen comentarios para esta conferencia.</div>
+    {% endif %}
+{% endblock %}
