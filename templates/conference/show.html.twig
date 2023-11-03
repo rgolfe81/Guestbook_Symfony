@@ -17,10 +17,10 @@
             <p>{{ comment.text }}</p>
         {% endfor %}
         {% if previous >=0 %}
-            <a href="{{ path('conference', { id: conference.id, offset:previous }) }}">Anterior</a>
+            <a href="{{ path('conference', { slug: conference.slug, offset:previous }) }}">Anterior</a>
         {% endif %}
         {% if next < comments|length %}
-            <a href="{{ path('conference', { id: conference.id, offset: next }) }}">Siguiente</a>
+            <a href="{{ path('conference', { slug: conference.slug, offset: next }) }}">Siguiente</a>
         {% endif %}
     {% else %}
         <div>No existen comentarios para esta conferencia.</div>
