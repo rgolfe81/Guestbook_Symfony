@@ -5,10 +5,14 @@
 {% block body %}
     <h2>Conferencia: {{ conference }}</h2>
     {% if comments|length > 0 %}
-        <div>Hay {{ comments|length }} comentarios</div>
+        {% if comments|length == 1 %}
+            <div>Hay {{ comments|length }} comentario</div>
+        {% else %}
+            <div>Hay {{ comments|length }} comentarios</div>
+        {% endif %}
         {% for comment in comments %}
             {% if comment.photoFilename %}
-                <img src="{{ asset('uploads/photos/' ~ comment.photoFilename) }}" alt="Imagen de comentario" />
+                <img src="{{ asset('uploads/photos/' ~ comment.photoFilename) }}" alt="Imagen de comentario"/>
             {% endif %}
             <h4>{{ comment.author }}</h4>
             <small>

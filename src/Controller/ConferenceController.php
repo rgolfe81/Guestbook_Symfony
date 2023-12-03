@@ -78,6 +78,7 @@ class ConferenceController extends AbstractController
 
         return new Response($this->twig->render('conference/show.html.twig', [
             'comments' => $paginator,
+            'conference' => $conference,
             'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
             'comment_form' => $form->createView(),
