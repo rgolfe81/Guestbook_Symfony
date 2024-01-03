@@ -7,8 +7,10 @@ services:
       POSTGRES_USER: main
       POSTGRES_PASSWORD: main
       POSTGRES_DB: main
-    ports: [5432]
+    ports:
+      - "${DB_PORT:-5432}:5432"
 
   redis:
     image: redis:5-alpine
-    ports: [6379]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
